@@ -6,8 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>keto.chat</title>
 </head>
-<body class="bg-gray-900">
-    
+<body>
+    <div class="flex">
+        <!-- Server List -->
+        <div class="bg-gray-900 w-20 flex flex-col min-h-screen h-screen px-2 py-2">
+            <div class="overflow-y-auto">
+                <ul class="text-center">
+                    <li class="mx-auto mb-3">
+                        <a href="/channels/@me" class="mx-auto transition-all duration-100 bg-gray-800 hover:bg-gray-700 rounded-full h-12 w-12 px-2 py-2 flex flex-col items-center align-center justify-center">
+                            <img src="https://cdn.discordapp.com/avatars/1083960793063755788/17fdbe387c86c64cbe23f0316efb9d0a.png?size=4096" class="h-8 w-8 mx-auto" />
+                        </a>
+                    </li>
+
+                    <div class="mx-auto mb-3 border-b border-gray-700 w-10"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://cdn.tailwindcss.com/"></script>
 </html>
