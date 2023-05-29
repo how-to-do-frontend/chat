@@ -14,6 +14,11 @@ def index():
 def me():
     return render_template('me.html')
 
+# Friends list
+@app.route("/friends")
+def friends():
+    return render_template('friends.html')
+
 # Other users
 @app.route("/channels/<int:snowflake>")
 def snowflake(snowflake):
