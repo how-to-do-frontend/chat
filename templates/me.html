@@ -9,16 +9,35 @@
 <body>
     <div class="flex">
         <!-- Server List -->
-        <div class="bg-gray-900 w-20 flex flex-col min-h-screen h-screen px-2 py-2">
-            <div class="overflow-y-auto">
+        <div class="flex flex-col">
+            <div class="bg-gray-900 w-20 min-h-[100px] h-[100%] px-2 py-2">
+                <div class="overflow-y-auto">
+                    <ul class="text-center">
+                        <li class="mx-auto mb-3" data-tooltip-target="tooltip-home" data-tooltip-placement="right">
+                            <a href="/channels/@me" class="mx-auto transition-all duration-100 bg-gray-800 hover:bg-gray-700 rounded-full h-12 w-12 px-2 py-2 flex flex-col items-center align-center justify-center">
+                                <img src="https://cdn.discordapp.com/avatars/1083960793063755788/17fdbe387c86c64cbe23f0316efb9d0a.png?size=4096" class="h-8 w-8 mx-auto" />
+                            </a>
+                        </li>
+                        <div id="tooltip-home" role="tooltip" class="transition-opacity duration-200 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-700">
+                            Home
+                        </div>
+    
+                        <div class="mx-auto mb-3 border-b border-gray-700 w-10"></div>
+                    </ul>
+                </div>
+            </div>
+            <div class="bg-gray-900 w-20 px-2 py-2">
                 <ul class="text-center">
-                    <li class="mx-auto mb-3">
-                        <a href="/channels/@me" class="mx-auto transition-all duration-100 bg-gray-800 hover:bg-gray-700 rounded-full h-12 w-12 px-2 py-2 flex flex-col items-center align-center justify-center">
-                            <img src="https://cdn.discordapp.com/avatars/1083960793063755788/17fdbe387c86c64cbe23f0316efb9d0a.png?size=4096" class="h-8 w-8 mx-auto" />
-                        </a>
+                    <li class="mx-auto mt-auto" data-tooltip-target="tooltip-settings" data-tooltip-placement="right">
+                        <div class="mx-auto transition-all duration-100 cursor-pointer bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white rounded-full h-12 w-12 px-2 py-2 flex flex-col items-center align-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-8 w-8 mx-auto">
+                                <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
                     </li>
-
-                    <div class="mx-auto mb-3 border-b border-gray-700 w-10"></div>
+                    <div id="tooltip-settings" role="tooltip" class="transition-opacity duration-200 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-700">
+                        Settings
+                    </div>
                 </ul>
             </div>
         </div>
@@ -52,12 +71,6 @@
                                     </svg>
                                     <span>Home</span>
                                 </div>
-                                <div class="transition-all duration-100 flex flex-row items-center rounded text-gray-400 hover:bg-gray-700 hover:text-white cursor-pointer px-3 py-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-2">
-                                        <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" clip-rule="evenodd" />
-                                    </svg>  
-                                    <span>Settings</span>
-                                </div>
                             </div>
 
                             <p class="text-gray-400 uppercase font-medium text-xs px-3 py-1 mt-5">DMs</p>
@@ -68,22 +81,40 @@
                 <div class="flex-1 flex justify-between">
                     <!-- Main -->
                     <div class="bg-gray-700 flex-1 flex flex-col justify-between">
+                        <!-- Welcome message -->
                         <div class="flex h-full">
                             <div class="text-gray-200 m-auto text-center">
                                 <h3 class="text-2xl font-medium">Welcome to</h3>
-                                <p class="text-gray-400 text-4xl font-medium mb-10">KetoChat!</p>
+                                <p class="text-gray-400 text-4xl font-bold mb-10">KetoChat!</p>
+
+                                <!-- Welcome message tips -->
                                 <div class="grid grid-rows-2 grid-cols-2 gap-4">
+                                    <!-- Discover KetoChat -->
                                     <div class="w-full min-w-full flex flex-row items-center gap-[12px] transition-all duration-100 bg-gray-800 hover:bg-gray-800/75 hover:text-purple-400 rounded px-3 py-1 text-left cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="32" width="32" class="mr-3">
                                             <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clip-rule="evenodd" />
                                             <path d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z" />
                                         </svg>
-                                          
                                         <div class="flex flex-col mr-3">
                                             <div class="text-1xl font-medium line-clamp-2">Discover KetoChat</div>
                                             <div class="text-md text-gray-400 overflow-hidden line-clamp-3 w-80">Find a community based on your hobbies or interests.</div>
                                         </div>
+                                        <div class="m-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" height="24" width="24">
+                                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                        </div>
+                                    </div>
 
+                                    <!-- Developer API -->
+                                    <div class="w-full min-w-full flex flex-row items-center gap-[12px] transition-all duration-100 bg-gray-800 hover:bg-gray-800/75 hover:text-purple-400 rounded px-3 py-1 text-left cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"  height="32" width="32" class="mr-3">
+                                            <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z" clip-rule="evenodd" />
+                                        </svg>
+                                        <div class="flex flex-col mr-3">
+                                            <div class="text-1xl font-medium line-clamp-2">Developer API</div>
+                                            <div class="text-md text-gray-400 overflow-hidden line-clamp-3 w-80">Check out our API docs to learn how to make a bot for KetoChat!</div>
+                                        </div>
                                         <div class="m-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" height="24" width="24">
                                                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
@@ -103,4 +134,5 @@
     </div>
 </body>
 <script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
 </html>
