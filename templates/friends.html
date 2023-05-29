@@ -34,7 +34,7 @@
 
             <div class="flex-1 flex">
                 <!-- Tabs & Recent DMs -->
-                <div class="bg-gray-800 w-56 flex flex-col min-h-full ">
+                <div class="bg-gray-800 w-56 flex flex-col min-h-full">
                     <div class="w-56 flex-none flex flex-col">
                         <div class="overflow-y-auto p-2">
                             <div class="flex flex-col gap-1 text-md">
@@ -61,7 +61,45 @@
 
                 <div class="flex-1 flex justify-between">
                     <!-- Main -->
-                    <div class="bg-gray-700 flex-1 flex flex-col justify-between">
+                    <div class="bg-gray-700 flex-1 flex flex-col p-2 pl-4 pr-4 text-gray-400 font-medium">
+                        <div>
+                            <span class="uppercase text-xs">Online &mdash; onlineCount</span>
+
+                            <div class="flex flex-col gap-0 mt-3 overflow-y-auto">
+                                {% for friend in friends %}
+                                    {% if friend['status'] == "Online" %}
+                                        <div class="transition-all duration-100 cursor-pointer rounded px-2 py-2 hover:bg-gray-600 flex flex-row items-center gap-2">
+                                            {% if avatar %}
+                                                <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
+                                            {% else %}
+                                                <img src="{{ url_for('static', filename='avatardefault.svg') }}" class="h-[36px] w-[36px] rounded-full">
+                                            {% endif %}
+                                            <div class="flex flex-col">
+                                                <p class="text-white font-medium">@{{ friend['username'] }}</p>
+                                                <p class="text-gray-400 text-sm">{{ friend['status'] }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <span class="uppercase text-xs">Offline &mdash; offlineCount</span>
+
+                            <div class="flex flex-col gap-0 mt-3 overflow-y-auto">
+                                {% for friend in friends %}
+                                    {% if friend['status'] == "Offline" %}
+                                        <div class="transition-all duration-100 cursor-pointer rounded px-2 py-2 hover:bg-gray-600 flex flex-row items-center gap-2">
+                                            <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
+                                            <div class="flex flex-col">
+                                                <p class="text-white font-medium">@{{ friend['username'] }}</p>
+                                                <p class="text-gray-400 text-sm">{{ friend['status'] }}</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
