@@ -72,7 +72,11 @@
                                             {% if avatar %}
                                                 <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
                                             {% else %}
-                                                <img src="{{ url_for('static', filename='avatardefault.svg') }}" class="h-[36px] w-[36px] rounded-full">
+                                                <div class="relative h-[36px] w-[36px] rounded-full overflow-hidden bg-gray-800">
+                                                    <svg class="absolute w-12 h-12 text-gray-400 -left-[6px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </div>
                                             {% endif %}
                                             <div class="flex flex-col">
                                                 <p class="text-white font-medium">@{{ friend['username'] }}</p>
@@ -90,7 +94,15 @@
                                 {% for friend in friends %}
                                     {% if friend['status'] == "Offline" %}
                                         <div class="transition-all duration-100 cursor-pointer rounded px-2 py-2 hover:bg-gray-600 flex flex-row items-center gap-2">
-                                            <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
+                                            {% if avatar %}
+                                                <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
+                                            {% else %}
+                                                <div class="relative h-[36px] w-[36px] rounded-full overflow-hidden bg-gray-800">
+                                                    <svg class="absolute w-12 h-12 text-gray-400 -left-[6px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </div>
+                                            {% endif %}
                                             <div class="flex flex-col">
                                                 <p class="text-white font-medium">@{{ friend['username'] }}</p>
                                                 <p class="text-gray-400 text-sm">{{ friend['status'] }}</p>

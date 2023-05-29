@@ -14,12 +14,12 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Home page
+# Login
 @app.route("/login")
 def login():
     return "login"
 
-# Home page
+# Register
 @app.route("/register")
 def register():
     return "register"
@@ -68,8 +68,8 @@ def get_friends():
     #placeholder friends
     friends = [
         {"id": 1685391664700, "avatar": "", "username": "test user 1", "status": "Online"},
-        {"id": 1685392169569, "avatar": "https://i.pravatar.cc/300", "username": "test user 2", "status": "Offline"},
-        {"id": 1685392174760, "avatar": "https://i.pravatar.cc/300", "username": "test user 3", "status": "Offline"},
+        {"id": 1685392169569, "avatar": "", "username": "test user 2", "status": "Offline"},
+        {"id": 1685392174760, "avatar": "", "username": "test user 3", "status": "Offline"},
     ]
 
     return jsonify(friends)
