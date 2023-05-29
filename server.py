@@ -10,12 +10,12 @@ def index():
     return render_template('index.html')
 
 # Me
-@app.route("/users/@me")
+@app.route("/channels/@me")
 def me():
     return render_template('me.html')
 
 # Other users
-@app.route("/users/<int:snowflake>")
+@app.route("/channels/<int:snowflake>")
 def snowflake(snowflake):
     timstamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
     return f"Snowflake: {timstamp}"
