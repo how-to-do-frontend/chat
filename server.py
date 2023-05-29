@@ -67,7 +67,7 @@ def get_current_user():
 def get_friends():
     #placeholder friends
     friends = [
-        {"id": 1685391664700, "avatar": "", "username": "test user 1", "status": "Online"},
+        {"id": 1685391664700, "avatar": "https://cdn.discordapp.com/avatars/659022591071223819/48c9606a28a3ef1d284aa1b7c0914be9.png?size=4096", "username": "Iriel", "status": "Online"},
         {"id": 1685392169569, "avatar": "", "username": "test user 2", "status": "Offline"},
         {"id": 1685392174760, "avatar": "", "username": "test user 3", "status": "Offline"},
     ]
