@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KetoChat</title>
+    <style>
+        @font-face {
+            font-family: "Whitney";
+            src: url("{{ url_for('static', filename='fonts/whitneybook.otf') }}");
+        }
+        body {
+            font-family: "Whitney", Verdana, Tahoma !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <!-- Server List -->
+        <div class="flex flex-col">
+            <div class="bg-gray-800 w-72 min-h-[100px] h-[100%] px-2 py-2"></div>
+        </div>
+
+        <div class="flex flex-col min-h-screen h-screen min-w-screen w-screen">
+            <!-- Header -->
+            <div class="bg-gray-700 flex">
+                <div class="bg-gray-800 w-56 flex-none p-2 text-white font-medium"></div>
+                <div class="p-2 flex flex-row justify-center items-center align-center pl-4 pr-4"></div>
+            </div>
+
+            <div class="flex-1 flex">
+                <!-- Tabs & Recent DMs -->
+                <div class="bg-gray-800 w-56 flex flex-col min-h-full ">
+                    <div class="w-56 flex-none flex flex-col">
+                        <div class="overflow-y-auto">
+                            <div class="flex flex-col gap-1 text-md px-2 py-8">
+                                <div>
+                                    <span class="text-xs uppercase font-bold text-white">User Settings</span>
+                                    <div class="flex flex-col mt-1 font-medium w-[100%]">
+                                        <a href="#" class="pr-0 flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-white text-[16px] bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            My Account
+                                        </a>
+                                        <a href="#" class="flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            Profile
+                                        </a>
+                                        <a href="#" class="flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            Sessions
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex justify-between">
+                    <!-- Main -->
+                    <div class="bg-gray-700 flex-1 flex flex-col justify-between">
+                        <div class="px-8 py-8">
+                            <div class="flex flex-row justify-between">
+                                <div class="w-[95%]">
+                                    <h3 class="text-2xl font-medium text-white">My Account</h3>
+                                    <div class="flex items-center justify-between">
+                                        <div class="rounded flex flex-row items-center gap-2 mt-5">
+                                            <img src="{{ me[0]['avatar'] }}" class="h-[72px] w-[72px] rounded-full">
+                                            <div class="flex flex-col">
+                                                <p class="text-white font-medium text-xl">@{{ me[0]['username'] }}</p>
+                                                <p class="text-gray-400 text-md flex flex-row gap-2">
+                                                    {% if "Staff" in me[0]['badges'] %}
+                                                        <span data-tooltip-target="tooltip-staff" data-tooltip-placement="bottom">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                                <path fill="#8899A6" d="M27.989 19.977c-.622 0-1.225.078-1.806.213L15.811 9.818c.134-.581.212-1.184.212-1.806C16.023 3.587 12.436 0 8.012 0 7.11 0 5.91.916 6.909 1.915l2.997 2.997s.999 1.998-.999 3.995-3.996.998-3.996.998L1.915 6.909C.916 5.91 0 7.105 0 8.012c0 4.425 3.587 8.012 8.012 8.012.622 0 1.225-.078 1.806-.212l10.371 10.371c-.135.581-.213 1.184-.213 1.806 0 4.425 3.588 8.011 8.012 8.011.901 0 2.101-.916 1.102-1.915l-2.997-2.997s-.999-1.998.999-3.995 3.995-.999 3.995-.999l2.997 2.997c1 .999 1.916-.196 1.916-1.102 0-4.425-3.587-8.012-8.011-8.012z"/>
+                                                            </svg>
+                                                        </span>
+                                                    {% endif %}
+    
+                                                    {% if "Bug Hunter" in me[0]['badges'] %}
+                                                        <span data-tooltip-target="tooltip-bughunter" data-tooltip-placement="bottom">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                                <path fill="#CCD6DD" d="M33 3c-7-3-15-3-15-3S10 0 3 3C0 18 3 31 18 36c15-5 18-18 15-33z"/>
+                                                                <path fill="#55ACEE" d="M18 33.884C6.412 29.729 1.961 19.831 4.76 4.444 11.063 2.029 17.928 2 18 2c.071 0 6.958.04 13.24 2.444 2.799 15.387-1.652 25.285-13.24 29.44z"/>
+                                                                <path fill="#269" d="M31.24 4.444C24.958 2.04 18.071 2 18 2v31.884c11.588-4.155 16.039-14.053 13.24-29.44z"/>
+                                                            </svg>
+                                                        </span>
+                                                    {% endif %}
+    
+                                                    {% if "Early User" in me[0]['badges'] %}
+                                                        <span data-tooltip-target="tooltip-earlyuser" data-tooltip-placement="bottom">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                                <path fill="#3B88C3" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/>
+                                                                <path fill="#FFF" d="M10.498 9.249c0-1.488 1.023-2.325 2.449-2.325H18.9c3.224 0 5.83 2.17 5.83 5.457 0 2.17-.9 3.628-2.885 4.558v.062c2.637.372 4.713 2.573 4.713 5.271 0 4.372-2.914 6.729-7.193 6.729h-6.386c-1.427 0-2.481-.899-2.481-2.356V9.249zm4.651 6.418h2.419c1.519 0 2.511-.899 2.511-2.45 0-1.457-1.147-2.201-2.511-2.201h-2.419v4.651zm0 9.24h3.659c1.674 0 2.915-.961 2.915-2.697 0-1.458-1.117-2.45-3.287-2.45h-3.287v5.147z"/>
+                                                            </svg>
+                                                        </span>
+                                                    {% endif %}
+    
+                                                    {% if "Supporter" in me[0]['badges'] %}
+                                                        <span data-tooltip-target="tooltip-supporter" data-tooltip-placement="bottom">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                                <path fill="#5C913B" d="M35.602 16.28c-2.582-3.761-7.92 1.774-17.662 2.899-3.607.416-6.857 3.428-11.047 3.141-1.718-.118-4.117-5.061-5.913-4.273-.924.406-1.348 1.761-.398 2.779L11.13 33.412s.536.618 2.342.19c.445.131 7.135-2.55 11.003-7.917.926-1.285 2.03-2.355 3.173-3.249 3.711-2.744 7.745-3.7 7.745-3.7.516-.426.637-.879.609-1.272.034-.656-.4-1.184-.4-1.184z"/>
+                                                                <path fill="#A7D28B" d="M11.476 10.274c-3.783 5.25-10.408 7.737-10.408 7.737-1.236 1.047-.192 2.281-.192 2.281l10.438 12.359s.522.617 2.28.189c0 0 6.625-2.482 10.407-7.732 3.899-5.41 10.93-7.118 10.93-7.118 1.235-1.047.192-2.283.192-2.283L24.685 3.35s-.522-.618-2.28-.192c0 0-7.03 1.704-10.929 7.116z"/>
+                                                                <circle fill="#77B255" cx="22" cy="14" r="5.5"/>
+                                                                <path fill="#5C913B" d="M12.873 31.929c-.881 0-1.204-.328-1.248-.378L2.216 20.568c-.018-.021-.495-.567-.437-1.261.035-.421.253-.796.647-1.115l.063-.038c.061-.024 6.163-2.532 9.583-7.065l.2.15-.2-.15c3.618-4.796 9.859-6.854 9.921-6.874 1.745-.406 2.316.174 2.377.242l9.285 11.044c.017.018.493.566.435 1.261-.035.42-.253.795-.647 1.114l-.099.049c-.061.015-6.129 1.523-9.644 6.181-3.499 4.64-9.607 7.642-9.668 7.671-.464.11-.846.152-1.159.152zm-.871-.707c.001 0 .452.416 1.865.088.008-.011 6.009-2.962 9.436-7.504 3.437-4.555 9.225-6.182 9.867-6.351.257-.221.399-.466.422-.729.042-.48-.312-.893-.315-.897L23.992 4.784c-.002 0-.45-.415-1.864-.087-.041.014-6.135 2.026-9.656 6.693-3.366 4.461-9.239 6.995-9.758 7.213-.268.225-.414.476-.437.745-.04.476.312.887.315.891l9.41 10.983z"/>
+                                                                <path fill="#FFAC33" d="M21.276 22.166l-.006 5.94.497.59c.969-.884 1.9-1.878 2.705-2.996.835-1.158 1.805-2.149 2.828-2.986l-.483-.575-5.541.027z"/>
+                                                                <path fill="#FFE8B6" d="M26.798 22.118L14.292 7.305c-1.016.836-1.992 1.811-2.822 2.964-.811 1.126-1.755 2.117-2.735 2.991l1.462 1.731-.001.001 11.075 13.114c.98-.875 1.913-1.876 2.725-3.003.83-1.152 1.805-2.126 2.82-2.962l-.019-.023h.001z"/>
+                                                                <path fill="#5C913B" d="M14.479 22.555c-1.557-1.844-4.853 1.148-5.793.035-.455-.539-.162-1.238.436-1.742 1.005-.85 1.73-.355 2.185-.74.323-.272.306-.605.114-.834-.446-.527-1.586-.252-2.472.26l-.431-.51c-.269-.318-.745-.359-1.063-.09-.318.27-.358.744-.089 1.062l.446.529c-.677.898-.907 2.09-.106 3.037 1.496 1.77 4.833-1.172 5.883.072.364.432.262 1.256-.504 1.902-1.148.971-2.188.516-2.655.91-.228.191-.269.555-.026.844.387.457 1.62.359 2.805-.379.002.002.002.004.002.006l.487.576c.269.318.746.357 1.064.09.319-.27.358-.746.089-1.064l-.487-.576c-.005-.006-.013-.01-.019-.016.799-.978 1.069-2.267.134-3.372z"/>
+                                                                <path fill="#E1E8ED" d="M32.456 32.588c.009-.008.019-.014.028-.021.068-.068.121-.146.181-.221.042-.052.089-.102.128-.155.035-.05.064-.101.096-.152 1.42-2.187.49-5.895-2.321-8.707-2.812-2.812-6.521-3.742-8.707-2.321-.052.031-.103.06-.153.096-.053.039-.104.086-.154.127-.074.061-.152.113-.221.182-.009.009-.015.019-.022.028-.011.011-.024.018-.036.03l.006.005c-1 1.062-1.012 2.705-.006 3.712 1.008 1.008 2.65.994 3.713-.006l.011.012c-.021.02-.044.033-.064.053-1.059 1.059-1.084 2.748-.059 3.775 1.026 1.025 2.717 1 3.775-.059.02-.02.033-.043.053-.064l.011.012c-1 1.062-1.013 2.705-.005 3.713 1.007 1.006 2.649.994 3.711-.006l.006.006c.01-.014.018-.027.029-.039z"/>
+                                                                <path fill="#CCD6DD" d="M21.277 25.231c.906.905 2.321.979 3.37.261.439-.75.565-1.463.565-1.686-2.207 1.646-4.177.009-4.618-.97-.183.846.039 1.75.683 2.395zm7.299 3.84c.298-.419.529-.824.637-1.098-1.405 1.288-4.091.345-4.905-1.698-.358.95-.175 2.044.571 2.79 1.002 1.002 2.634.994 3.697.006zm3.854 3.595l.029-.036c.01-.008.02-.014.028-.022.069-.068.122-.146.181-.22.043-.053.089-.102.128-.156.036-.049.065-.101.097-.152.065-.1.1-.218.155-.324-2.528 1.131-4.415-.788-4.944-1.745-.295.917-.103 1.944.609 2.657 1.006 1.007 2.648.995 3.711-.006l.006.004z"/>
+                                                                <path fill="#E1E8ED" d="M13.956 12.498l.028-.022c.069-.068.122-.146.181-.22.042-.052.088-.101.127-.155.036-.05.065-.101.097-.152 1.42-2.187.489-5.896-2.322-8.707C9.255.43 5.547-.501 3.36.919c-.051.032-.103.061-.153.097-.054.039-.103.085-.155.127-.074.06-.152.112-.22.181-.009.009-.015.02-.022.028-.011.01-.025.019-.036.03l.005.005c-1 1.062-1.012 2.705-.005 3.712 1.007 1.007 2.65.995 3.712-.005l.011.011c-.021.019-.044.033-.064.053-1.059 1.059-1.084 2.748-.058 3.775 1.026 1.027 2.716 1.001 3.775-.058.02-.02.033-.043.053-.064l.011.011c-1 1.062-1.013 2.705-.005 3.712 1.007 1.007 2.649.995 3.711-.006l.005.006c.011-.011.02-.024.031-.036z"/>
+                                                                <path fill="#CCD6DD" d="M2.773 5.1c.906.906 2.321.98 3.37.26.439-.75.564-1.462.564-1.685-2.206 1.645-4.177.007-4.617-.972-.183.847.039 1.752.683 2.397zm7.301 3.838c.297-.419.528-.822.635-1.096-1.406 1.288-4.092.344-4.905-1.699-.358.95-.175 2.044.57 2.79 1.004 1.003 2.637.994 3.7.005zm3.851 3.597c.011-.011.02-.024.03-.036l.028-.022c.069-.068.122-.146.181-.22.042-.052.088-.101.127-.155.036-.05.065-.101.097-.152.065-.1.1-.219.155-.325-2.528 1.131-4.415-.787-4.944-1.744-.295.917-.103 1.944.609 2.656 1.007 1.007 2.649.995 3.711-.006l.006.004z"/>
+                                                            </svg>
+                                                        </span>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <button class="transition-all duration-100 font-medium text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-800/50 rounded px-4 py-2">
+                                                Edit User Profile
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button onclick="window.location='/channels/@me'" type="button" class="rounded-full border border-gray-400 text-sm p-1.5 ml-auto inline-flex items-center bg-transparent hover:bg-gray-600 text-gray-400 hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="text-gray-300 space-y-2 w-[95%] mt-8">
+                                <div class="w-full min-w-full flex flex-row items-center gap-[12px] transition-all duration-100 bg-gray-800 hover:bg-gray-800/75 hover:text-purple-400 rounded px-3 py-1 text-left cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="32" width="32" class="mr-3">
+                                        <path fill-rule="evenodd" d="M17.834 6.166a8.25 8.25 0 100 11.668.75.75 0 011.06 1.06c-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788 3.807-3.808 9.98-3.808 13.788 0A9.722 9.722 0 0121.75 12c0 .975-.296 1.887-.809 2.571-.514.685-1.28 1.179-2.191 1.179-.904 0-1.666-.487-2.18-1.164a5.25 5.25 0 11-.82-6.26V8.25a.75.75 0 011.5 0V12c0 .682.208 1.27.509 1.671.3.401.659.579.991.579.332 0 .69-.178.991-.579.3-.4.509-.99.509-1.671a8.222 8.222 0 00-2.416-5.834zM15.75 12a3.75 3.75 0 10-7.5 0 3.75 3.75 0 007.5 0z" clip-rule="evenodd" />
+                                    </svg>
+                                    <div class="flex flex-col mr-2 min-w-[90%]">
+                                        <div class="text-sm text-gray-300 font-medium uppercase">Username</div>
+                                        <div class="text-sm text-gray-400 overflow-hidden">{{ me[0]['username'] }}</div>
+                                    </div>
+                                    <div class="inline-block m-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">
+                                            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
+                                            <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
+                                        </svg>                                          
+                                    </div>
+                                </div>
+
+                                <div class="w-full min-w-full flex flex-row items-center gap-[12px] transition-all duration-100 bg-gray-800 hover:bg-gray-800/75 hover:text-purple-400 rounded px-3 py-1 text-left cursor-pointer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="32" class="mr-3">
+                                        <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                                        <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+                                    </svg>                                      
+                                    <div class="flex flex-col mr-2 min-w-[90%]">
+                                        <div class="text-sm text-gray-300 font-medium uppercase">Email</div>
+                                        <div class="text-sm text-gray-400 overflow-hidden">******@*****.com</div>
+                                    </div>
+                                    <div class="inline-block m-0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">
+                                            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
+                                            <path d="M5.25 5.25a3 3 0 00-3 3v10.5a3 3 0 003 3h10.5a3 3 0 003-3V13.5a.75.75 0 00-1.5 0v5.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5V8.25a1.5 1.5 0 011.5-1.5h5.25a.75.75 0 000-1.5H5.25z" />
+                                        </svg>                                          
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-600 mt-4 mb-4 w-[95%]"></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 w-72 flex-none overflow-y-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+</html>
+<div id="tooltip-staff" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Staff
+</div>
+<div id="tooltip-bughunter" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Bug Hunter
+</div>
+<div id="tooltip-earlyuser" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Early User
+</div>
+<div id="tooltip-supporter" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Supporter
+</div>

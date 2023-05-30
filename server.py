@@ -55,7 +55,7 @@ def settings():
     req = requests.get("http://localhost:5000/api/@me")
     me = json.loads(req.content)
 
-    return render_template('settings.html',
+    return render_template('settings/settings.html',
                            me=me
                         )
 
@@ -89,7 +89,7 @@ def get_friends():
     friends = [
         {"id": 1685391664700, "avatar": "https://cdn.discordapp.com/avatars/659022591071223819/48c9606a28a3ef1d284aa1b7c0914be9.png?size=4096", "username": "Iriel", "customStatus": "https://feds.lol/068", "status": "Online"},
         {"id": 1685392169569, "avatar": "https://cdn.discordapp.com/avatars/915795771268419604/edb5ef4d0307bf8a0a943e60cd81befd.png?size=4096", "username": "sadnesswillsear", "customStatus": "😭 why is Rising of the Shield Hero such a good anime what the fuck", "status": "Online"},
-        {"id": 1685392174760, "avatar": "", "username": "test user 3", "customStatus": "", "status": "Offline"},
+        {"id": 1096249933994139729, "avatar": "https://cdn.discordapp.com/avatars/1096249933994139729/804bd9313e35166f99430a5a2b4e0e8f.png?size=4096", "username": "tree", "customStatus": "", "status": "Offline"},
     ]
 
     return jsonify(friends)
