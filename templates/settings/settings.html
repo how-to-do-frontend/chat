@@ -56,6 +56,35 @@
                                             </svg>                                              
                                             Sessions
                                         </a>
+
+                                        <div class="border-b border-gray-700 mt-2 mb-2"></div>
+
+                                        <a class="modal-open cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0A.75.75 0 018.25 6h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75zM2.625 12a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zM7.5 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12A.75.75 0 017.5 12zm-4.875 5.25a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                                            </svg>                                                                                      
+                                            Changelogs
+                                        </a>
+                                        <a href="https://github.com/ophx/chat" target="_blank" class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z" clip-rule="evenodd"></path>
+                                            </svg>                                                                                   
+                                            Source Code
+                                        </a>
+
+                                        <div class="border-b border-gray-700 mt-2 mb-2"></div>
+
+                                        <a class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-red-500 text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z" clip-rule="evenodd" />
+                                            </svg>                                                                                                                                
+                                            Logout
+                                        </a>
+
+                                        <div class="mt-10 px-3 py-1">
+                                            <p class="text-gray-500 text-xs">API: indev</p>
+                                            <p class="text-gray-500 text-xs">ketochat.js: indev</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -200,3 +229,67 @@
 <div id="tooltip-supporter" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
     Supporter
 </div>
+
+<!-- Changelogs modal -->
+<div class="modal opacity-0 transition-opacity duration-100 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-75"></div>
+
+    <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded z-50 overflow-y-auto">
+        <div class="modal-content text-left text-white">
+            <div class="p-4">
+                <p class="text-lg font-medium">Changelogs</p>
+                <p class="text-gray-400 text-sm">Read about updates of KetoChat.</p>
+    
+                <div class="mt-4">
+                    {% for changelog in changelogs %}
+                        <div class="transition-all duration-100 flex flex-row items-center rounded text-white font-medium hover:bg-gray-700 hover:text-purple-400 cursor-pointer px-3 py-2">
+                            <span>{{ changelog['title'] }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="flex justify-end bg-gray-900 p-3">
+                <button class="transition-all duration-100 modal-close bg-gray-800/50 hover:bg-gray-700 px-8 py-1 rounded-lg text-white">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var openmodal = document.querySelectorAll(".modal-open");
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            toggleModal();
+        });
+    }
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key === "Escape" || evt.key === "Esc";
+        } else {
+            isEscape = evt.keyCode === 27;
+        }
+        if (isEscape && document.body.classList.contains("modal-active")) {
+            toggleModal();
+        }
+    };
+
+    const overlay = document.querySelector(".modal-overlay");
+    overlay.addEventListener("click", toggleModal);
+
+    var closemodal = document.querySelectorAll(".modal-close");
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener("click", toggleModal);
+    }
+
+    function toggleModal() {
+        const body = document.querySelector("body");
+        const modal = document.querySelector(".modal");
+        modal.classList.toggle("opacity-0");
+        modal.classList.toggle("pointer-events-none");
+        body.classList.toggle("modal-active");
+    }
+</script>

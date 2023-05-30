@@ -55,8 +55,12 @@ def settings():
     req = requests.get("http://localhost:5000/api/@me")
     me = json.loads(req.content)
 
+    req2 = requests.get("http://localhost:5000/api/changelogs")
+    changelogs = json.loads(req2.content)
+
     return render_template('settings/settings.html',
-                           me=me
+                           me=me,
+                           changelogs=changelogs
                         )
 
 # Other users (PROTECTED)
@@ -72,6 +76,16 @@ def snowflake(snowflake):
 ################################################################
 # API Routes
 ################################################################
+# Get changelogs (PROTECTED)
+@app.route("/api/changelogs", methods=["GET"])
+def get_changelogs():
+    changelogs = [
+        {"title": "Smoke weed everyday 🍃"},
+        {"title": "Tree!"},
+    ]
+
+    return jsonify(changelogs)
+
 # Get current user (PROTECTED)
 @app.route("/api/@me", methods=["GET"])
 def get_current_user():
