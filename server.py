@@ -39,7 +39,6 @@ def friends():
                            friends=friends
                         )
 
-
 # Settings (PROTECTED)
 @app.route("/settings")
 def settings():
