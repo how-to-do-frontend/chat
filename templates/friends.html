@@ -69,7 +69,7 @@
                     <!-- Main -->
                     <div class="bg-gray-700 flex-1 flex flex-col p-2 pl-4 pr-4 text-gray-400 font-medium">
                         <div>
-                            <span class="uppercase text-xs">Online &mdash; onlineCount</span>
+                            <span class="uppercase text-xs">Online &mdash; {{ onlineCount }}</span>
 
                             <div class="flex flex-col gap-0 mt-3 overflow-y-auto">
                                 {% for friend in friends %}
@@ -98,7 +98,7 @@
                             </div>
                         </div>
                         <div class="mt-8">
-                            <span class="uppercase text-xs">Offline &mdash; offlineCount</span>
+                            <span class="uppercase text-xs">Offline &mdash; {{ offlineCount }}</span>
 
                             <div class="flex flex-col gap-0 mt-3 overflow-y-auto">
                                 {% for friend in friends %}

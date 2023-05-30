@@ -34,9 +34,19 @@ def me():
 def friends():
     req = requests.get("http://localhost:5000/api/@me/friends")
     friends = json.loads(req.content)
+
+    onlineCount = 0
+    offlineCount = 0
+    for i in range(0, len(friends)):
+        if friends[i]["status"] == "Online":
+            onlineCount += 1
+        else:
+            offlineCount += 1
     
     return render_template('friends.html',
-                           friends=friends
+                           friends=friends,
+                           onlineCount=onlineCount,
+                           offlineCount=offlineCount
                         )
 
 # Settings (PROTECTED)
@@ -67,7 +77,7 @@ def snowflake(snowflake):
 def get_current_user():
     #placeholder user
     current_user = [
-        {"id": 459738097622712320, "avatar": "https://cdn.discordapp.com/avatars/459738097622712320/a_a3094d93bbc01dd74140e768abc59203.gif?size=4096", "username": "ophx", "customStatus": "", "status": "Online", "userType": "user", "badges": ["Staff", "Bug Hunter", "Early User"]}
+        {"id": 459738097622712320, "avatar": "https://cdn.discordapp.com/avatars/459738097622712320/a_a3094d93bbc01dd74140e768abc59203.gif?size=4096", "username": "ophx", "customStatus": "", "status": "Online", "userType": "user", "badges": ["Staff", "Bug Hunter", "Early User", "Supporter"]}
     ]
 
     return jsonify(current_user)
