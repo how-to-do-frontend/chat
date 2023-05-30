@@ -20,9 +20,6 @@
         <!-- Server List -->
         <div class="flex flex-col">
             {% include 'components/serverlist.html' %}
-            
-            <!-- Settings modal -->
-            {% include 'components/settings-modal.html' %}
         </div>
 
         <div class="flex flex-col min-h-screen h-screen min-w-screen w-screen">
@@ -83,17 +80,17 @@
                                                     <img src="{{ friend['avatar'] }}" class="h-[36px] w-[36px] rounded-full">
                                                 </div>
                                             {% else %}
-                                            <div class="p-[2px] ring-2 ring-green-500 rounded-full">
-                                                <div class="relative h-[36px] w-[36px] rounded-full overflow-hidden bg-gray-800">
-                                                    <svg class="absolute w-12 h-12 text-gray-400 -left-[6px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                                                    </svg>
+                                                <div class="p-[2px] ring-2 ring-green-500 rounded-full">
+                                                    <div class="relative h-[36px] w-[36px] rounded-full overflow-hidden bg-gray-800">
+                                                        <svg class="absolute w-12 h-12 text-gray-400 -left-[6px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             {% endif %}
                                             <div class="flex flex-col">
                                                 <p class="text-white font-medium">@{{ friend['username'] }}</p>
-                                                <p class="text-gray-400 text-sm">{{ friend['status'] }}</p>
+                                                <p class="text-gray-400 text-sm">{{ friend['customStatus'] }}</p>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -122,7 +119,6 @@
                                             {% endif %}
                                             <div class="flex flex-col">
                                                 <p class="text-white font-medium">@{{ friend['username'] }}</p>
-                                                <p class="text-gray-400 text-sm">{{ friend['status'] }}</p>
                                             </div>
                                         </div>
                                     {% endif %}

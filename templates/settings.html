@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KetoChat</title>
+    <style>
+        @font-face {
+            font-family: "Whitney";
+            src: url("{{ url_for('static', filename='fonts/whitneybook.otf') }}");
+        }
+        body {
+            font-family: "Whitney", Verdana, Tahoma !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <!-- Server List -->
+        <div class="flex flex-col">
+            <div class="bg-gray-800 w-72 min-h-[100px] h-[100%] px-2 py-2"></div>
+        </div>
+
+        <div class="flex flex-col min-h-screen h-screen min-w-screen w-screen">
+            <!-- Header -->
+            <div class="bg-gray-700 flex">
+                <div class="bg-gray-800 w-56 flex-none p-2 text-white font-medium"></div>
+                <div class="p-2 flex flex-row justify-center items-center align-center pl-4 pr-4"></div>
+            </div>
+
+            <div class="flex-1 flex">
+                <!-- Tabs & Recent DMs -->
+                <div class="bg-gray-800 w-56 flex flex-col min-h-full ">
+                    <div class="w-56 flex-none flex flex-col">
+                        <div class="overflow-y-auto p-2">
+                            <div class="flex flex-col gap-1 text-md"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex justify-between">
+                    <!-- Main -->
+                    <div class="bg-gray-700 flex-1 flex flex-col justify-between">
+                        <div class="px-8 py-8">
+                            <div class="flex flex-row justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-medium text-white">My Account</h3>
+                                    <div class="rounded flex flex-row items-center gap-2 mt-5">
+                                        <img src="{{ me[0]['avatar'] }}" class="h-[72px] w-[72px] rounded-full">
+                                        <div class="flex flex-col">
+                                            <p class="text-white font-medium text-lg">@{{ me[0]['username'] }}</p>
+                                            <p class="text-gray-400 text-md flex flex-row gap-2">
+                                                {% if "Staff" in me[0]['badges'] %}
+                                                    <span data-tooltip-target="tooltip-staff" data-tooltip-placement="bottom">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                            <path fill="#8899A6" d="M27.989 19.977c-.622 0-1.225.078-1.806.213L15.811 9.818c.134-.581.212-1.184.212-1.806C16.023 3.587 12.436 0 8.012 0 7.11 0 5.91.916 6.909 1.915l2.997 2.997s.999 1.998-.999 3.995-3.996.998-3.996.998L1.915 6.909C.916 5.91 0 7.105 0 8.012c0 4.425 3.587 8.012 8.012 8.012.622 0 1.225-.078 1.806-.212l10.371 10.371c-.135.581-.213 1.184-.213 1.806 0 4.425 3.588 8.011 8.012 8.011.901 0 2.101-.916 1.102-1.915l-2.997-2.997s-.999-1.998.999-3.995 3.995-.999 3.995-.999l2.997 2.997c1 .999 1.916-.196 1.916-1.102 0-4.425-3.587-8.012-8.011-8.012z"/>
+                                                        </svg>
+                                                    </span>
+                                                {% endif %}
+
+                                                {% if "Early User" in me[0]['badges'] %}
+                                                    <span data-tooltip-target="tooltip-earlyuser" data-tooltip-placement="bottom">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
+                                                            <path fill="#3B88C3" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/>
+                                                            <path fill="#FFF" d="M10.498 9.249c0-1.488 1.023-2.325 2.449-2.325H18.9c3.224 0 5.83 2.17 5.83 5.457 0 2.17-.9 3.628-2.885 4.558v.062c2.637.372 4.713 2.573 4.713 5.271 0 4.372-2.914 6.729-7.193 6.729h-6.386c-1.427 0-2.481-.899-2.481-2.356V9.249zm4.651 6.418h2.419c1.519 0 2.511-.899 2.511-2.45 0-1.457-1.147-2.201-2.511-2.201h-2.419v4.651zm0 9.24h3.659c1.674 0 2.915-.961 2.915-2.697 0-1.458-1.117-2.45-3.287-2.45h-3.287v5.147z"/>
+                                                        </svg>
+                                                    </span>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button onclick="window.location='/channels/@me'" type="button" class="rounded-full border border-gray-400 text-sm p-1.5 ml-auto inline-flex items-center bg-transparent hover:bg-gray-600 text-gray-400 hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 w-72 flex-none overflow-y-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+</html>
+<div id="tooltip-staff" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Staff
+</div>
+<div id="tooltip-earlyuser" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Early User
+</div>
