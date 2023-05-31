@@ -67,6 +67,7 @@ def settings():
                            today=today
                         )
 
+# Profile Settings (PROTECTED)
 @app.route("/settings/profile")
 def profile():
     req = requests.get("http://localhost:5000/api/@me")
