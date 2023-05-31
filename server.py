@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, session
 from markupsafe import escape
 from datetime import datetime, timezone
+import pendulum
 import requests
 import json
 
@@ -58,12 +59,31 @@ def settings():
     req2 = requests.get("http://localhost:5000/api/changelogs")
     changelogs = json.loads(req2.content)
 
+    today = pendulum.now().to_formatted_date_string()
+
     return render_template('settings/settings.html',
                            me=me,
-                           changelogs=changelogs
+                           changelogs=changelogs,
+                           today=today
                         )
 
-# Other users (PROTECTED)
+@app.route("/settings/profile")
+def profile():
+    req = requests.get("http://localhost:5000/api/@me")
+    me = json.loads(req.content)
+
+    req2 = requests.get("http://localhost:5000/api/changelogs")
+    changelogs = json.loads(req2.content)
+
+    today = pendulum.now().to_formatted_date_string()
+
+    return render_template('settings/profile.html',
+                           me=me,
+                           changelogs=changelogs,
+                           today=today
+                        )
+
+# Servers (PROTECTED)
 @app.route("/channels/<int:snowflake>")
 def snowflake(snowflake):
     timstamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
@@ -80,8 +100,8 @@ def snowflake(snowflake):
 @app.route("/api/changelogs", methods=["GET"])
 def get_changelogs():
     changelogs = [
-        {"title": "Smoke weed everyday 🍃"},
-        {"title": "Tree!"},
+        {"title": "Securing your account with 2FA"},
+        {"title": "Custom Accent Color"},
     ]
 
     return jsonify(changelogs)
@@ -103,7 +123,7 @@ def get_friends():
     friends = [
         {"id": 1685391664700, "avatar": "https://cdn.discordapp.com/avatars/659022591071223819/48c9606a28a3ef1d284aa1b7c0914be9.png?size=4096", "username": "Iriel", "customStatus": "https://feds.lol/068", "status": "Online"},
         {"id": 1685392169569, "avatar": "https://cdn.discordapp.com/avatars/915795771268419604/edb5ef4d0307bf8a0a943e60cd81befd.png?size=4096", "username": "sadnesswillsear", "customStatus": "😭 why is Rising of the Shield Hero such a good anime what the fuck", "status": "Online"},
-        {"id": 1096249933994139729, "avatar": "https://cdn.discordapp.com/avatars/1096249933994139729/804bd9313e35166f99430a5a2b4e0e8f.png?size=4096", "username": "tree", "customStatus": "", "status": "Offline"},
+        {"id": 1096249933994139729, "avatar": "https://cdn.discordapp.com/avatars/1096249933994139729/804bd9313e35166f99430a5a2b4e0e8f.png?size=4096", "username": "tree", "customStatus": "\"Life is like a penis, sometimes it's up and sometimes it's down, but it never stays hard forever\" - George Washington", "status": "Online"},
     ]
 
     return jsonify(friends)

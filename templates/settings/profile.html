@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KetoChat</title>
+    <style>
+        @font-face {
+            font-family: "Whitney";
+            src: url("{{ url_for('static', filename='fonts/whitneybook.otf') }}");
+        }
+        body {
+            font-family: "Whitney", Verdana, Tahoma !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <!-- Server List -->
+        <div class="flex flex-col">
+            <div class="bg-gray-800 w-72 min-h-[100px] h-[100%] px-2 py-2"></div>
+        </div>
+
+        <div class="flex flex-col min-h-screen h-screen min-w-screen w-screen">
+            <!-- Header -->
+            <div class="bg-gray-700 flex">
+                <div class="bg-gray-800 w-56 flex-none p-2 text-white font-medium"></div>
+                <div class="p-2 flex flex-row justify-center items-center align-center pl-4 pr-4"></div>
+            </div>
+
+            <div class="flex-1 flex">
+                <!-- Tabs & Recent DMs -->
+                <div class="bg-gray-800 w-56 flex flex-col min-h-full ">
+                    <div class="w-56 flex-none flex flex-col">
+                        <div class="overflow-y-auto">
+                            <div class="flex flex-col gap-1 text-md px-2 py-8">
+                                <div>
+                                    <span class="text-xs uppercase font-bold text-white">User Settings</span>
+                                    <div class="flex flex-col mt-1 font-medium w-[100%]">
+                                        <a href="/settings" class="flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            My Account
+                                        </a>
+                                        <a href="/settings/profile" class="pr-0 flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-white text-[16px] bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            Profile
+                                        </a>
+                                        <a href="#" class="flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                                            </svg>                                              
+                                            Sessions
+                                        </a>
+
+                                        <div class="border-b border-gray-700 mt-2 mb-2"></div>
+
+                                        <a class="modal-open cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M2.625 6.75a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0A.75.75 0 018.25 6h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75zM2.625 12a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zM7.5 12a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12A.75.75 0 017.5 12zm-4.875 5.25a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0zm4.875 0a.75.75 0 01.75-.75h12a.75.75 0 010 1.5h-12a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+                                            </svg>                                                                                      
+                                            Changelogs
+                                        </a>
+                                        <a href="https://github.com/ophx/chat" target="_blank" class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-gray-400 hover:text-white text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M12.026 2c-5.509 0-9.974 4.465-9.974 9.974 0 4.406 2.857 8.145 6.821 9.465.499.09.679-.217.679-.481 0-.237-.008-.865-.011-1.696-2.775.602-3.361-1.338-3.361-1.338-.452-1.152-1.107-1.459-1.107-1.459-.905-.619.069-.605.069-.605 1.002.07 1.527 1.028 1.527 1.028.89 1.524 2.336 1.084 2.902.829.091-.645.351-1.085.635-1.334-2.214-.251-4.542-1.107-4.542-4.93 0-1.087.389-1.979 1.024-2.675-.101-.253-.446-1.268.099-2.64 0 0 .837-.269 2.742 1.021a9.582 9.582 0 0 1 2.496-.336 9.554 9.554 0 0 1 2.496.336c1.906-1.291 2.742-1.021 2.742-1.021.545 1.372.203 2.387.099 2.64.64.696 1.024 1.587 1.024 2.675 0 3.833-2.33 4.675-4.552 4.922.355.308.675.916.675 1.846 0 1.334-.012 2.41-.012 2.737 0 .267.178.577.687.479C19.146 20.115 22 16.379 22 11.974 22 6.465 17.535 2 12.026 2z" clip-rule="evenodd"></path>
+                                            </svg>                                                                                   
+                                            Source Code
+                                        </a>
+
+                                        <div class="border-b border-gray-700 mt-2 mb-2"></div>
+
+                                        <a class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-red-500 text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
+                                                <path fill-rule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z" clip-rule="evenodd" />
+                                            </svg>                                                                                                                                
+                                            Logout
+                                        </a>
+
+                                        <div class="mt-10 px-3 py-1">
+                                            <p class="text-gray-500 text-xs">API: indev</p>
+                                            <p class="text-gray-500 text-xs">ketochat.js: indev</p>
+                                            <p class="text-gray-500 text-xs">Nick Is Gay!</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex justify-between">
+                    <!-- Main -->
+                    <div class="bg-gray-700 flex-1 flex flex-col justify-between">
+                        <div class="px-8 py-8">
+                            <div class="flex flex-row justify-between">
+                                <div class="w-[95%]">
+                                    <h3 class="text-2xl font-medium text-white">Profile</h3>
+                                    <div class="flex items-center justify-between">
+                                        <div class="rounded flex flex-row gap-2 mt-5 w-full">
+                                            <div class="flex flex-col w-28">
+                                                <span class="text-xs uppercase font-bold text-gray-400">Profile Picture</span>
+                                                <div class="flex justify-center align-center items-center mt-2">
+                                                    <img src="{{ me[0]['avatar'] }}" class="h-[72px] w-[72px] rounded-full cursor-pointer">
+                                                </div>
+                                                <p class="text-xs font-normal text-white text-center mt-2 cursor-pointer">Remove</p>
+                                                <p class="text-xs font-bold text-gray-500 text-center">(max 4.20 MB)</p>
+                                            </div>
+                                            <div class="flex flex-col ml-10 w-full">
+                                                <span class="text-xs uppercase font-bold text-gray-400">Custom Banner</span>
+                                                <div class="flex items-center mt-2">
+                                                    <div class="bg-gray-800 rounded p-6 w-full h-[72px] cursor-pointer"></div>
+                                                </div>
+                                                <p class="text-xs font-normal text-white text-center mt-2 cursor-pointer">Remove</p>
+                                                <p class="text-xs font-bold text-gray-500 text-center">(max 6.90 MB)</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <button onclick="window.location='/channels/@me'" type="button" class="rounded-full border border-gray-400 text-sm p-1.5 ml-auto inline-flex items-center bg-transparent hover:bg-gray-600 text-gray-400 hover:text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="border-b border-gray-600 mt-4 mb-4 w-[95%]"></div>
+
+                            <div class="flex flex-row justify-between">
+                                <div class="w-[95%]">
+                                    <div class="flex items-center justify-between">
+                                        <div class="rounded flex flex-col w-full">
+                                            <span class="text-xs uppercase font-bold text-gray-400">About Me</span>
+                                            <div class="mt-2">
+                                                <textarea class="transition-all duration-100 w-full block p-2.5 rounded bg-gray-800 placeholder-gray-400 text-white border border-gray-800 outline-none focus:ring-2 focus:ring-purple-400" placeholder="Tell us something about yourself..." name="aboutMe" id="" cols="30" rows="10"></textarea>
+                                                <p class="text-sm mt-2 text-white">Descriptions support Markdown formatting</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="mt-4 transition-all duration-100 font-medium text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-800/50 rounded px-4 py-2">
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-700 w-72 flex-none overflow-y-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.tailwindcss.com/"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+</html>
+<div id="tooltip-staff" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Staff
+</div>
+<div id="tooltip-bughunter" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Bug Hunter
+</div>
+<div id="tooltip-earlyuser" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Early User
+</div>
+<div id="tooltip-supporter" role="tooltip" class="transition-opacity duration-100 absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 tooltip bg-gray-800">
+    Supporter
+</div>
+
+<!-- Changelogs modal -->
+<div class="modal opacity-0 transition-opacity duration-100 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-75"></div>
+
+    <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded z-50 overflow-y-auto">
+        <div class="modal-content text-left text-white">
+            <div class="p-4">
+                <p class="text-lg font-medium">Changelogs</p>
+                <p class="text-gray-400 text-sm">{{ today }}</p>
+    
+                <div class="mt-4">
+                    {% for changelog in changelogs %}
+                        <div class="transition-all duration-100 flex flex-row items-center rounded text-white font-medium hover:bg-gray-700 hover:text-purple-400 cursor-pointer px-3 py-2">
+                            <span>{{ changelog['title'] }}</span>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="flex justify-end bg-gray-900 p-3">
+                <button class="transition-all duration-100 modal-close bg-gray-800/50 hover:bg-gray-700 px-8 py-1 rounded-lg text-white">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var openmodal = document.querySelectorAll(".modal-open");
+    for (var i = 0; i < openmodal.length; i++) {
+        openmodal[i].addEventListener("click", function (event) {
+            event.preventDefault();
+            toggleModal();
+        });
+    }
+
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+            isEscape = evt.key === "Escape" || evt.key === "Esc";
+        } else {
+            isEscape = evt.keyCode === 27;
+        }
+        if (isEscape && document.body.classList.contains("modal-active")) {
+            toggleModal();
+        }
+    };
+
+    const overlay = document.querySelector(".modal-overlay");
+    overlay.addEventListener("click", toggleModal);
+
+    var closemodal = document.querySelectorAll(".modal-close");
+    for (var i = 0; i < closemodal.length; i++) {
+        closemodal[i].addEventListener("click", toggleModal);
+    }
+
+    function toggleModal() {
+        const body = document.querySelector("body");
+        const modal = document.querySelector(".modal");
+        modal.classList.toggle("opacity-0");
+        modal.classList.toggle("pointer-events-none");
+        body.classList.toggle("modal-active");
+    }
+</script>
