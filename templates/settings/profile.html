@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KetoChat | Settings</title>
-    <style>
-        @font-face {
-            font-family: "Whitney";
-            src: url("{{ url_for('static', filename='fonts/whitneybook.otf') }}");
-        }
-        body {
-            font-family: "Whitney", Verdana, Tahoma !important;
-        }
-    </style>
-</head>
+    {% from "components/macros.html" import head %}
+    {{ head('Settings') }}
 <body class="bg-gray-800">
     <div class="flex">
         <!-- Server List -->
@@ -82,7 +69,7 @@
                                         </a>
 
                                         <div class="mt-10 px-3 py-1">
-                                            <p class="text-purple-400 text-xs">{{ gitShaHashShort }} (master)</p>
+                                            <p class="text-gray-500 text-xs">Build {{ gitShaHashShort }} (master)</p>
                                             <p class="text-gray-500 text-xs">API: indev</p>
                                             <p class="text-gray-500 text-xs">ketochat.js: indev</p>
                                             <p class="text-gray-500 text-xs">Nick Is Gay!</p>
