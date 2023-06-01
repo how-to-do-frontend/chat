@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import pendulum
 import requests
 import json
+import subprocess
 
 app = Flask(__name__)
 
@@ -61,10 +62,14 @@ def settings():
 
     today = pendulum.now().to_formatted_date_string()
 
+    gitShaHashShort = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])
+    gitShaHashShort = str(gitShaHashShort, "utf-8").strip()
+
     return render_template('settings/settings.html',
                            me=me,
                            changelogs=changelogs,
-                           today=today
+                           today=today,
+                           gitShaHashShort=gitShaHashShort
                         )
 
 # Profile Settings (PROTECTED)
