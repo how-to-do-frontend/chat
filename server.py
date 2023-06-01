@@ -5,8 +5,17 @@ import pendulum
 import requests
 import json
 import subprocess
+import bcrypt
+from flask_mysqldb import MySQL, MySQLdb
 
 app = Flask(__name__)
+
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = ""
+app.config["MYSQL_DB"] = "ketochat"
+app.config["MYSQL_CURSORCLASS"] = "DictCursor"
+mysql = MySQL(app)
 
 ################################################################
 # Main Routes
@@ -107,12 +116,20 @@ def register():
     if request.method == "GET":
         return render_template("register.html")
     else:
-        email = request.form["email"]
-        username = request.form["username"]
-        password = request.form["password"]
-        confirm_password = request.form["confirm_password"]
+        email = request.form["email"].encode("utf-8")
+        username = request.form["username"].encode("utf-8")
+        password = request.form["password"].encode("utf-8")
+        confirm_password = request.form["confirm_password"].encode("utf-8")
 
-        return redirect("/")
+        cur = mysql.connection.cursor()
+        if (password != confirm_password):
+            return render_template("register.html", msg="Paswords do not match...")
+        else:
+            timestamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
+            hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+            cur.execute("INSERT INTO users (id, username, password, email) VALUES (%s, %s, %s, %s)", (timestamp, username, hashed_password, email))
+            mysql.connection.commit()
+        return redirect("/channels/@me")
 
 
 ################################################################
