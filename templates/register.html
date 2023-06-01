@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% from "components/macros.html" import head %}
+    {{ head('Register') }}
+<body class="bg-gradient-to-r from-indigo-400 via-purple-400 to-blue-400">
+    <!-- Main -->
+    <div class="relative isolate pt-14 px-8">
+        <div class="mx-auto max-w-2xl py-56">
+            <div class="text-left bg-gray-900/75 rounded p-4">
+                <h1 class="font-bold tracking-tight text-white text-2xl">Register</h1>
+                <p class="text-md leading-8 text-gray-400">Welcome 👋</p>
+                <div class="mt-4">
+                    <form action="" method="post" class="flex flex-col gap-y-2">
+                        <input type="email" name="email" id="email" placeholder="Email" class="transition-all duration-100 w-full block p-2.5 rounded bg-gray-800 placeholder-gray-400 text-white border border-gray-800 outline-none focus:ring-2 focus:ring-purple-400">
+                        <input type="text" name="username" id="username" placeholder="Username" class="transition-all duration-100 w-full block p-2.5 rounded bg-gray-800 placeholder-gray-400 text-white border border-gray-800 outline-none focus:ring-2 focus:ring-purple-400">
+                        <input type="password" name="password" id="password" placeholder="Password" class="transition-all duration-100 w-full block p-2.5 rounded bg-gray-800 placeholder-gray-400 text-white border border-gray-800 outline-none focus:ring-2 focus:ring-purple-400">
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" class="transition-all duration-100 w-full block p-2.5 rounded bg-gray-800 placeholder-gray-400 text-white border border-gray-800 outline-none focus:ring-2 focus:ring-purple-400">
+                        <button type="submit" class="transition-all duration-100 font-bold text-white bg-purple-500 hover:bg-purple-500/75 rounded px-4 py-2">
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.tailwindcss.com/"></script>
+</html>

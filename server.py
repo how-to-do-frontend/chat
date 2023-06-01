@@ -16,16 +16,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Login
-@app.route("/login")
-def login():
-    return "login"
-
-# Register
-@app.route("/register")
-def register():
-    return "register"
-
 # Me (PROTECTED)
 @app.route("/channels/@me")
 def me():
@@ -101,6 +91,28 @@ def snowflake(snowflake):
     return f"Snowflake: {timstamp}"
 
 
+
+
+################################################################
+# Auth Routes
+################################################################
+# Login
+@app.route("/auth/login", methods=["GET", "POST"])
+def login():
+    return "login"
+
+# Register
+@app.route("/auth/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+    else:
+        email = request.form["email"]
+        username = request.form["username"]
+        password = request.form["password"]
+        confirm_password = request.form["confirm_password"]
+
+        return redirect("/")
 
 
 ################################################################
