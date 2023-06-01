@@ -83,10 +83,14 @@ def profile():
 
     today = pendulum.now().to_formatted_date_string()
 
+    gitShaHashShort = subprocess.check_output(['git', 'rev-parse', '--short', 'HEAD'])
+    gitShaHashShort = str(gitShaHashShort, "utf-8").strip()
+
     return render_template('settings/profile.html',
                            me=me,
                            changelogs=changelogs,
-                           today=today
+                           today=today,
+                           gitShaHashShort=gitShaHashShort
                         )
 
 # Servers (PROTECTED)
