@@ -77,7 +77,7 @@
 
                                         <div class="border-b border-gray-700 mt-2 mb-2"></div>
 
-                                        <a class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-red-500 text-[16px] hover:bg-gray-700 rounded px-3 py-1">
+                                        <a href="/auth/logout" class="cursor-pointer flex items-center w-[100%] mb-1 transition-all duration-100 font-medium text-red-500 text-[16px] hover:bg-gray-700 rounded px-3 py-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 mr-2">
                                                 <path fill-rule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h6a1.5 1.5 0 001.5-1.5V15a.75.75 0 011.5 0v3.75a3 3 0 01-3 3h-6a3 3 0 01-3-3V5.25a3 3 0 013-3h6a3 3 0 013 3V9A.75.75 0 0115 9V5.25a1.5 1.5 0 00-1.5-1.5h-6zm5.03 4.72a.75.75 0 010 1.06l-1.72 1.72h10.94a.75.75 0 010 1.5H10.81l1.72 1.72a.75.75 0 11-1.06 1.06l-3-3a.75.75 0 010-1.06l3-3a.75.75 0 011.06 0z" clip-rule="evenodd" />
                                             </svg>                                                                                                                                
@@ -106,11 +106,19 @@
                                     <h3 class="text-2xl font-medium text-white">My Account</h3>
                                     <div class="flex items-center justify-between">
                                         <div class="rounded flex flex-row items-center gap-2 mt-5">
-                                            <img src="{{ me[0]['avatar'] }}" class="h-[72px] w-[72px] rounded-full">
+                                            {% if session["avatar"] != "" %}
+                                                <img src="" class="h-[72px] w-[72px] rounded-full">
+                                            {% else %}
+                                                <div class="relative h-[72px] w-[72px] rounded-full overflow-hidden bg-gray-800">
+                                                    <svg class="absolute w-20 h-20 text-gray-400 -left-[4px]" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </div>
+                                            {% endif %}
                                             <div class="flex flex-col">
-                                                <p class="text-white font-medium text-xl">@{{ me[0]['username'] }}</p>
+                                                <p class="text-white font-medium text-xl">@{{ session['username'] }}</p>
                                                 <p class="text-gray-400 text-md flex flex-row gap-2">
-                                                    {% if "Staff" in me[0]['badges'] %}
+                                                    {% if True %}
                                                         <span data-tooltip-target="tooltip-staff" data-tooltip-placement="bottom">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
                                                                 <path fill="#8899A6" d="M27.989 19.977c-.622 0-1.225.078-1.806.213L15.811 9.818c.134-.581.212-1.184.212-1.806C16.023 3.587 12.436 0 8.012 0 7.11 0 5.91.916 6.909 1.915l2.997 2.997s.999 1.998-.999 3.995-3.996.998-3.996.998L1.915 6.909C.916 5.91 0 7.105 0 8.012c0 4.425 3.587 8.012 8.012 8.012.622 0 1.225-.078 1.806-.212l10.371 10.371c-.135.581-.213 1.184-.213 1.806 0 4.425 3.588 8.011 8.012 8.011.901 0 2.101-.916 1.102-1.915l-2.997-2.997s-.999-1.998.999-3.995 3.995-.999 3.995-.999l2.997 2.997c1 .999 1.916-.196 1.916-1.102 0-4.425-3.587-8.012-8.011-8.012z"/>
@@ -118,7 +126,7 @@
                                                         </span>
                                                     {% endif %}
     
-                                                    {% if "Bug Hunter" in me[0]['badges'] %}
+                                                    {% if True %}
                                                         <span data-tooltip-target="tooltip-bughunter" data-tooltip-placement="bottom">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
                                                                 <path fill="#CCD6DD" d="M33 3c-7-3-15-3-15-3S10 0 3 3C0 18 3 31 18 36c15-5 18-18 15-33z"/>
@@ -128,7 +136,7 @@
                                                         </span>
                                                     {% endif %}
     
-                                                    {% if "Early User" in me[0]['badges'] %}
+                                                    {% if True %}
                                                         <span data-tooltip-target="tooltip-earlyuser" data-tooltip-placement="bottom">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
                                                                 <path fill="#3B88C3" d="M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z"/>
@@ -137,7 +145,7 @@
                                                         </span>
                                                     {% endif %}
     
-                                                    {% if "Supporter" in me[0]['badges'] %}
+                                                    {% if True %}
                                                         <span data-tooltip-target="tooltip-supporter" data-tooltip-placement="bottom">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" class="h-6 w-6">
                                                                 <path fill="#5C913B" d="M35.602 16.28c-2.582-3.761-7.92 1.774-17.662 2.899-3.607.416-6.857 3.428-11.047 3.141-1.718-.118-4.117-5.061-5.913-4.273-.924.406-1.348 1.761-.398 2.779L11.13 33.412s.536.618 2.342.19c.445.131 7.135-2.55 11.003-7.917.926-1.285 2.03-2.355 3.173-3.249 3.711-2.744 7.745-3.7 7.745-3.7.516-.426.637-.879.609-1.272.034-.656-.4-1.184-.4-1.184z"/>
@@ -182,7 +190,7 @@
                                     </svg>
                                     <div class="flex flex-col mr-2 min-w-[90%]">
                                         <div class="text-sm text-gray-300 font-medium uppercase">Username</div>
-                                        <div class="text-sm text-gray-400 overflow-hidden">{{ me[0]['username'] }}</div>
+                                        <div class="text-sm text-gray-400 overflow-hidden">{{ session['username'] }}</div>
                                     </div>
                                     <div class="inline-block m-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">
@@ -199,7 +207,7 @@
                                     </svg>                                      
                                     <div class="flex flex-col mr-2 min-w-[90%]">
                                         <div class="text-sm text-gray-300 font-medium uppercase">Email</div>
-                                        <div class="text-sm text-gray-400 overflow-hidden">******@*****.com</div>
+                                        <div class="text-sm text-gray-400 overflow-hidden">{{ session['email'] }}</div>
                                     </div>
                                     <div class="inline-block m-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="24" width="24">

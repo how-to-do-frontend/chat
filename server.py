@@ -10,6 +10,8 @@ from flask_mysqldb import MySQL, MySQLdb
 
 app = Flask(__name__)
 
+app.secret_key = "IK8W1j^jiC9a3wxPVYYUa@eFvRx8@9Xzm8nPz9cBQ*t1jdEDi1"
+
 app.config["MYSQL_HOST"] = "localhost"
 app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = ""
@@ -28,7 +30,7 @@ def index():
 # Me (PROTECTED)
 @app.route("/channels/@me")
 def me():
-    return render_template('me.html')
+    return render_template('me.html', session=session)
 
 # Friends list (PROTECTED)
 @app.route("/friends")
@@ -47,15 +49,13 @@ def friends():
     return render_template('friends.html',
                            friends=friends,
                            onlineCount=onlineCount,
-                           offlineCount=offlineCount
+                           offlineCount=offlineCount,
+                           session=session
                         )
 
 # Settings (PROTECTED)
 @app.route("/settings")
 def settings():
-    req = requests.get("http://localhost:5000/api/@me")
-    me = json.loads(req.content)
-
     req2 = requests.get("http://localhost:5000/api/changelogs")
     changelogs = json.loads(req2.content)
 
@@ -65,18 +65,15 @@ def settings():
     gitShaHashShort = str(gitShaHashShort, "utf-8").strip()
 
     return render_template('settings/settings.html',
-                           me=me,
                            changelogs=changelogs,
                            today=today,
-                           gitShaHashShort=gitShaHashShort
+                           gitShaHashShort=gitShaHashShort,
+                           session=session
                         )
 
 # Profile Settings (PROTECTED)
 @app.route("/settings/profile")
 def profile():
-    req = requests.get("http://localhost:5000/api/@me")
-    me = json.loads(req.content)
-
     req2 = requests.get("http://localhost:5000/api/changelogs")
     changelogs = json.loads(req2.content)
 
@@ -86,10 +83,10 @@ def profile():
     gitShaHashShort = str(gitShaHashShort, "utf-8").strip()
 
     return render_template('settings/profile.html',
-                           me=me,
                            changelogs=changelogs,
                            today=today,
-                           gitShaHashShort=gitShaHashShort
+                           gitShaHashShort=gitShaHashShort,
+                           session=session
                         )
 
 # Servers (PROTECTED)
@@ -105,6 +102,12 @@ def snowflake(snowflake):
 ################################################################
 # Auth Routes
 ################################################################
+# Logout
+@app.route("/auth/logout")
+def logout():
+    session.clear()
+    return redirect("/auth/login")
+
 # Login
 @app.route("/auth/login", methods=["GET", "POST"])
 def login():
@@ -113,6 +116,24 @@ def login():
     else:
         email = request.form["email"].encode("utf-8")
         password = request.form["password"].encode("utf-8")
+
+        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM users WHERE email = %s", (email,))
+        user = cur.fetchone()
+        cur.close()
+
+        if len(user) > 0:
+            if bcrypt.hashpw(password, user["password"].encode("utf-8")) == user["password"].encode("utf-8"):
+                session["logged_in"] = True
+                session["id"] = user["id"]
+                session["username"] = user["username"]
+                session["email"] = user["email"]
+                session["avatar"] = user["avatar"]
+                return redirect("/channels/@me")
+            else:
+                return render_template("login.html", msg="Invalid password...")
+        else:
+            return render_template("login.html", msg="User not found...")
 
 # Register
 @app.route("/auth/register", methods=["GET", "POST"])
@@ -128,6 +149,8 @@ def register():
         cur = mysql.connection.cursor()
         if (len(username) < 3):
             return render_template("register.html", msg="Username must be 3 characters or longer...")
+        if (len(password) < 6):
+            return render_template("register.html", msg="Password must be 6 characters or longer...")
         if (password != confirm_password):
             return render_template("register.html", msg="Passwords do not match...")
         
@@ -154,22 +177,21 @@ def get_changelogs():
 # Get current user (PROTECTED)
 @app.route("/api/@me", methods=["GET"])
 def get_current_user():
-    #placeholder user
-    current_user = [
-        {"id": 459738097622712320, "avatar": "https://cdn.discordapp.com/avatars/459738097622712320/a_a3094d93bbc01dd74140e768abc59203.gif?size=4096", "username": "ophx", "customStatus": "", "status": "Online", "userType": "user", "badges": ["Staff", "Bug Hunter", "Early User", "Supporter"]}
-    ]
+    if (session["logged_in"] == True):    
+        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cur.execute("SELECT * FROM users WHERE email = %s", (session["email"],))
+        user = cur.fetchone()
+        cur.close()
 
-    return jsonify(current_user)
+        return jsonify(user)
+    else:
+        return "You are not logged in!"
 
 # Get friends (PROTECTED)
 @app.route("/api/@me/friends", methods=["GET"])
 def get_friends():
     #placeholder friends
-    friends = [
-        {"id": 1685391664700, "avatar": "https://cdn.discordapp.com/avatars/659022591071223819/48c9606a28a3ef1d284aa1b7c0914be9.png?size=4096", "username": "Iriel", "customStatus": "https://feds.lol/068", "status": "Online"},
-        {"id": 1685392169569, "avatar": "https://cdn.discordapp.com/avatars/915795771268419604/edb5ef4d0307bf8a0a943e60cd81befd.png?size=4096", "username": "sadnesswillsear", "customStatus": "😭 why is Rising of the Shield Hero such a good anime what the fuck", "status": "Online"},
-        {"id": 1096249933994139729, "avatar": "https://cdn.discordapp.com/avatars/1096249933994139729/804bd9313e35166f99430a5a2b4e0e8f.png?size=4096", "username": "tree", "customStatus": "\"Life is like a penis, sometimes it's up and sometimes it's down, but it never stays hard forever\" - George Washington", "status": "Online"},
-    ]
+    friends = []
 
     return jsonify(friends)
 
