@@ -7,6 +7,7 @@ import json
 import subprocess
 import bcrypt
 from flask_mysqldb import MySQL, MySQLdb
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -18,7 +19,14 @@ app.config["MYSQL_PASSWORD"] = ""
 app.config["MYSQL_DB"] = "ketochat"
 app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 mysql = MySQL(app)
-
+# Protected func
+def protected(func):
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        if not session:
+            return await render_template('login.html', msg='You must be logged in to access that page.')
+        return await func(*args, **kwargs)
+    return wrapper
 ################################################################
 # Main Routes
 ################################################################
@@ -29,11 +37,13 @@ def index():
 
 # Me (PROTECTED)
 @app.route("/channels/@me")
+@protected
 def me():
     return render_template('me.html', session=session)
 
 # Friends list (PROTECTED)
 @app.route("/friends")
+@protected
 def friends():
     req = requests.get("http://localhost:5000/api/@me/friends")
     friends = json.loads(req.content)
@@ -55,6 +65,7 @@ def friends():
 
 # Settings (PROTECTED)
 @app.route("/settings")
+@protected
 def settings():
     req2 = requests.get("http://localhost:5000/api/changelogs")
     changelogs = json.loads(req2.content)
@@ -73,6 +84,7 @@ def settings():
 
 # Profile Settings (PROTECTED)
 @app.route("/settings/profile")
+@protected
 def profile():
     req2 = requests.get("http://localhost:5000/api/changelogs")
     changelogs = json.loads(req2.content)
@@ -91,6 +103,7 @@ def profile():
 
 # Servers (PROTECTED)
 @app.route("/channels/<int:snowflake>")
+@protected
 def snowflake(snowflake):
     timstamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
 
@@ -104,6 +117,7 @@ def snowflake(snowflake):
 ################################################################
 # Logout
 @app.route("/auth/logout")
+@protected
 def logout():
     session.clear()
     return redirect("/auth/login")
@@ -166,6 +180,7 @@ def register():
 ################################################################
 # Get changelogs (PROTECTED)
 @app.route("/api/changelogs", methods=["GET"])
+@protected # TODO: why?
 def get_changelogs():
     changelogs = [
         {"title": "Securing your account with 2FA"},
@@ -176,6 +191,7 @@ def get_changelogs():
 
 # Get current user (PROTECTED)
 @app.route("/api/@me", methods=["GET"])
+@protected
 def get_current_user():
     if (session["logged_in"] == True):    
         cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -189,6 +205,7 @@ def get_current_user():
 
 # Get friends (PROTECTED)
 @app.route("/api/@me/friends", methods=["GET"])
+@protected
 def get_friends():
     #placeholder friends
     friends = []
