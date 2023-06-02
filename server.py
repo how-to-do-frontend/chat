@@ -108,7 +108,11 @@ def snowflake(snowflake):
 # Login
 @app.route("/auth/login", methods=["GET", "POST"])
 def login():
-    return "login"
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        email = request.form["email"].encode("utf-8")
+        password = request.form["password"].encode("utf-8")
 
 # Register
 @app.route("/auth/register", methods=["GET", "POST"])
@@ -122,14 +126,16 @@ def register():
         confirm_password = request.form["confirm_password"].encode("utf-8")
 
         cur = mysql.connection.cursor()
+        if (len(username) < 3):
+            return render_template("register.html", msg="Username must be 3 characters or longer...")
         if (password != confirm_password):
-            return render_template("register.html", msg="Paswords do not match...")
-        else:
-            timestamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
-            hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-            cur.execute("INSERT INTO users (id, username, password, email) VALUES (%s, %s, %s, %s)", (timestamp, username, hashed_password, email))
-            mysql.connection.commit()
-        return redirect("/channels/@me")
+            return render_template("register.html", msg="Passwords do not match...")
+        
+        timestamp = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
+        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
+        cur.execute("INSERT INTO users (id, username, password, email) VALUES (%s, %s, %s, %s)", (timestamp, username, hashed_password, email))
+        mysql.connection.commit()
+        return redirect("/auth/login")
 
 
 ################################################################
